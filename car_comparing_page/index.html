@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Comparison</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+    <h1>Car Comparison</h1>
+    <button id="show-compare-box">Click on the plus box to start comparing</button>
+    <div class="compare-box" id="compare-box">
+        <h2>Add Vehicle</h2>
+        <label for="year">Year:</label>
+        <select id="year">
+            <option value="">Select Year</option>
+            <option value="2024">2024</option>
+            <option value="2023">2023</option>
+            <option value="2022">2022</option>
+            <!-- Continue with options for years 2021 to 1990 -->
+        </select>
+        <label for="make">Make:</label>
+        <select id="make">
+            <option value="">Select Make</option>
+            <option value="Toyota">Toyota</option>
+            <option value="Honda">Honda</option>
+            <option value="Ford">Ford</option>
+            <!-- Add more make options as needed -->
+        </select>
+        <label for="model">Model:</label>
+        <select id="model">
+            <option value="">Select Model</option>
+            <option value="Camry">Camry</option>
+            <option value="Civic">Civic</option>
+            <option value="F-150">F-150</option>
+            <!-- Add more model options as needed -->
+        </select>
+        <label for="style">Style:</label>
+        <select id="style">
+            <option value="">Select Style</option>
+            <option value="Sedan">Sedan</option>
+            <option value="Hatchback">Hatchback</option>
+            <option value="Truck">Truck</option>
+            <!-- Add more style options as needed -->
+        </select>
+        <button id="add-car">Add Car</button>
+        <button id="done">Done</button>
+    </div>
+    <div id="selected-cars">
+        <!-- Selected cars will be displayed here -->
+    </div>
+    <script>
+        // JavaScript code to handle functionality
+        const showCompareBoxButton = document.getElementById("show-compare-box");
+        const compareBox = document.getElementById("compare-box");
+        const addCarButton = document.getElementById("add-car");
+        const doneButton = document.getElementById("done");
+        const selectedCars = document.getElementById("selected-cars");
+
+        showCompareBoxButton.addEventListener("click", function() {
+            compareBox.style.display = "block";
+        });
+
+        addCarButton.addEventListener("click", function() {
+            const year = document.getElementById("year").value;
+            const make = document.getElementById("make").value;
+            const model = document.getElementById("model").value;
+            const style = document.getElementById("style").value;
+
+            if (year && make && model && style) {
+                const carInfo = `${year} ${make} ${model} ${style}`;
+                const carItem = document.createElement("div");
+                carItem.textContent = carInfo;
+                selectedCars.appendChild(carItem);
+
+                // Clear input fields
+                document.getElementById("year").value = "";
+                document.getElementById("make").value = "";
+                document.getElementById("model").value = "";
+                document.getElementById("style").value = "";
+            }
+        });
+
+        doneButton.addEventListener("click", function() {
+            compareBox.style.display = "none";
+        });
+    </script>
+</body>
+</html>
